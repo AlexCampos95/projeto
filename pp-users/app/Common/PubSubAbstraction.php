@@ -9,5 +9,8 @@
  */
 class PubSubAbstraction
 {
-
+    public function run()
+    {
+        //Do some code
+    }
 }
