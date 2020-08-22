@@ -36,6 +36,6 @@ class Users extends Model implements AuthenticatableContract, AuthorizableContra
 
     public function getUserTypeAttribute()
     {
-        return UserTypes::where('id',$this->user_types_id)->first();
+        return UserTypes::where('id', $this->user_types_id)->first();
     }
 }
