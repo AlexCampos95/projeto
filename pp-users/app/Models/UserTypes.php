@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserTypes extends Model
 {
-    public $timestamps = false;
-
     public function users()
     {
         return $this->hasMany(Users::class);

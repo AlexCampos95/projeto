@@ -12,12 +12,12 @@ class UserTypesSeeder extends Seeder
      */
     public function run()
     {
-        UserTypes::create([
+        UserTypes::firstOrCreate([
             "id" => 1,
             "description" => "COMUM"
         ]);
 
-        UserTypes::create([
+        UserTypes::firstOrCreate([
             "id" => 2,
             "description" => "LOJISTA"
         ]);

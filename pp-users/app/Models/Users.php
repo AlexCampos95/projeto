@@ -12,7 +12,6 @@ class Users extends Model implements AuthenticatableContract, AuthorizableContra
 {
     use Authenticatable, Authorizable;
 
-    public $timestamps = false;
     protected $table = 'users';
 
     protected $fillable = [
