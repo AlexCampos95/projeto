@@ -6,6 +6,7 @@ use App\Domain\Users\MountUserByRequestData;
 use App\Domain\Users\ValidateUserTypesIdExists;
 use App\Domain\Users\ValidateUserUniqueFields;
 use App\Models\Users;
+use Exception;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
@@ -21,11 +22,15 @@ class UsersController extends Controller
             'user_types_id' => 'required'
         ]);
 
-        (new ValidateUserUniqueFields())->run($request);
-        (new ValidateUserTypesIdExists())->run($request);
+        try {
+            (new ValidateUserUniqueFields())->run($request);
+            (new ValidateUserTypesIdExists())->run($request);
 
-        $user = (new MountUserByRequestData())->run($request);
-        return response()->json(Users::create($user), 201);
+            $user = (new MountUserByRequestData())->run($request);
+            return response()->json(Users::create($user), 201);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), $e->getStatusCode());
+        }
     }
 
     public function get($id)
