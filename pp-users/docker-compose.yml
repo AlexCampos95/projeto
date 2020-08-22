@@ -1,0 +1,55 @@
+version: '3.0'
+services:
+  web-users:
+    container_name: pp-users-webserver
+    depends_on:
+      - php-users
+    build: ./docker/nginx
+    image: pp-users/webserver
+    networks:
+      - backend
+    ports:
+      - 8080:80
+    volumes:
+      - ./docker/nginx/certs:/etc/nginx/certs
+      - ./docker/nginx/conf:/etc/nginx/sites-available
+      - ./:/var/www/html
+
+  php-users:
+    container_name: pp-users-phpfpm
+    build: ./docker/php
+    image: pp-users/php
+    networks:
+      - backend
+    volumes:
+      - ./:/var/www/html
+
+  redis-users:
+    container_name: pp-users-redis
+    build: ./docker/redis
+    image: pp-users/redis
+    networks:
+      - backend
+
+  mysql-users:
+      container_name: pp-users-mysql
+      command: --init-file /data/application/init.sql
+      env_file:
+        - ./docker/mysql/mysql.env
+      build: ./docker/mysql
+      image: pp-users/mysql
+      networks:
+        - backend
+      ports:
+        - 3306:3306
+      volumes:
+        - ./docker/mysql/init.sql:/data/application/init.sql
+        - mysql-users-data:/var/lib/mysql
+        - mysql-users-log:/var/log/mysql
+
+networks:
+  backend:
+
+volumes:
+  mysql-users-data:
+  mysql-users-log:
