@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Users\MountUserByRequestData;
+use App\Domain\Users\ValidateUserTypesIdExists;
+use App\Domain\Users\ValidateUserUniqueFields;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
@@ -18,6 +20,9 @@ class UsersController extends Controller
             'password' => 'required',
             'user_types_id' => 'required'
         ]);
+
+        (new ValidateUserUniqueFields())->run($request);
+        (new ValidateUserTypesIdExists())->run($request);
 
         $user = (new MountUserByRequestData())->run($request);
         return response()->json(Users::create($user), 201);
