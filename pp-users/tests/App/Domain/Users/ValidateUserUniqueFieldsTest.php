@@ -1,8 +1,7 @@
 <?php
 
-namespace Domain\Users;
+namespace App\Domain\Users;
 
-use App\Domain\Users\ValidateUserUniqueFields;
 use Error;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;

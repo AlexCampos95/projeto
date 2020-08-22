@@ -1,8 +1,7 @@
 <?php
 
-namespace Domain\Users;
+namespace App\Domain\Users;
 
-use App\Domain\Users\ValidateUserTypesIdExists;
 use Error;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +18,6 @@ class ValidateUserTypesIdExistsTest extends TestCase
         $this->expectException(Error::class);
         $validator = new ValidateUserTypesIdExists();
         $validator->run($request);
-
     }
 
     public function scenarioUserTypeNotExists()

@@ -1,8 +1,7 @@
 <?php
 
-namespace Domain\Users;
+namespace App\Domain\Users;
 
-use App\Domain\Users\MountUserByRequestData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\TestCase;

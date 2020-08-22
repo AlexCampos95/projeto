@@ -29,4 +29,5 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
     });
 });
 
+$router->post('api/login', 'LoginController@execute');
 $router->post('api/user', 'UsersController@store');
