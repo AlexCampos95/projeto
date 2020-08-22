@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Enum\TransactionStatus;
+use App\Common\PubSubAbstraction;
 use App\Domain\Transfer\GetUserWallet;
 use App\Domain\Transfer\UserWalletBalance\AddPayeeMoney;
 use App\Domain\Transfer\UserWalletBalance\ChangeUserWalletBalance;
@@ -35,11 +37,13 @@ class TransferController extends Controller
             $withdrawPayerMoney = new WithdrawPayerMoney();
             (new ChangeUserWalletBalance($withdrawPayerMoney))->run($request->payer, $request->value);
 
+            $status = TransactionStatus::DONE;
             DB::commit();
-            return response()->json('User wallet balances, edited');
         } catch (Exception $e) {
+            $status = TransactionStatus::ERROR;
             DB::rollBack();
-            return response()->json($e->getMessage(), $e->getStatusCode());
         }
+
+        (new PubSubAbstraction())->run($status, $request->transaction_id, $request->payee);
     }
 }
