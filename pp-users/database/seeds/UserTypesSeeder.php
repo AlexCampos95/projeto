@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\UserTypes;
 use Illuminate\Database\Seeder;
 
 class UserTypesSeeder extends Seeder
