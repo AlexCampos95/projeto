@@ -21,3 +21,4 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 });
 
 $router->post('api/externalAuth', 'ExternalAuthController@execute');
+$router->post('api/updateStatus', 'UpdateStatusController@execute');
