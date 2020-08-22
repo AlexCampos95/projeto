@@ -1,0 +1,55 @@
+version: '3.0'
+services:
+  web-balance:
+    container_name: pp-balance-webserver
+    depends_on:
+      - php-balance
+    build: ./docker/nginx
+    image: pp-balance/webserver
+    networks:
+      - backend
+    ports:
+      - 8088:80
+    volumes:
+      - ./docker/nginx/certs:/etc/nginx/certs
+      - ./docker/nginx/conf:/etc/nginx/sites-available
+      - ./:/var/www/html
+
+  php-balance:
+    container_name: pp-balance-phpfpm
+    build: ./docker/php
+    image: pp-balance/php
+    networks:
+      - backend
+    volumes:
+      - ./:/var/www/html
+
+  redis-balance:
+    container_name: pp-balance-redis
+    build: ./docker/redis
+    image: pp-balance/redis
+    networks:
+      - backend
+
+  mysql-balance:
+      container_name: pp-balance-mysql
+      command: --init-file /data/application/init.sql
+      env_file:
+        - ./docker/mysql/mysql.env
+      build: ./docker/mysql
+      image: pp-balance/mysql
+      networks:
+        - backend
+      ports:
+        - 3308:3306
+      volumes:
+        - ./docker/mysql/init.sql:/data/application/init.sql
+        - mysql-balance-data:/var/lib/mysql
+        - mysql-balance-log:/var/log/mysql
+
+networks:
+  backend:
+
+volumes:
+  mysql-balance-data:
+  mysql-balance-log:
