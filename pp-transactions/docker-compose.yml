@@ -1,0 +1,55 @@
+version: '3.0'
+services:
+  web-transactions:
+    container_name: pp-transactions-webserver
+    depends_on:
+      - php-transactions
+    build: ./docker/nginx
+    image: pp-transactions/webserver
+    networks:
+      - backend
+    ports:
+      - 8087:80
+    volumes:
+      - ./docker/nginx/certs:/etc/nginx/certs
+      - ./docker/nginx/conf:/etc/nginx/sites-available
+      - ./:/var/www/html
+
+  php-transactions:
+    container_name: pp-transactions-phpfpm
+    build: ./docker/php
+    image: pp-transactions/php
+    networks:
+      - backend
+    volumes:
+      - ./:/var/www/html
+
+  redis-transactions:
+    container_name: pp-transactions-redis
+    build: ./docker/redis
+    image: pp-transactions/redis
+    networks:
+      - backend
+
+  mysql-transactions:
+      container_name: pp-transactions-mysql
+      command: --init-file /data/application/init.sql
+      env_file:
+        - ./docker/mysql/mysql.env
+      build: ./docker/mysql
+      image: pp-transactions/mysql
+      networks:
+        - backend
+      ports:
+        - 3307:3306
+      volumes:
+        - ./docker/mysql/init.sql:/data/application/init.sql
+        - mysql-transactions-data:/var/lib/mysql
+        - mysql-transactions-log:/var/log/mysql
+
+networks:
+  backend:
+
+volumes:
+  mysql-transactions-data:
+  mysql-transactions-log:
