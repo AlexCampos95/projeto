@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\ExternalAuth\Api as ExternalAuthApi;
 use App\Domain\Transaction\CreateTransaction;
 use App\Domain\Transaction\MountTransaction;
+use App\Domain\Transaction\ValidateExternalAuth;
 use App\Domain\Transaction\ValidateUserType;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Http\Request;
@@ -25,6 +27,7 @@ class TransactionController extends Controller
 
             $user = Auth::user();
             (new ValidateUserType())->run($user);
+            (new ValidateExternalAuth())->run(new ExternalAuthApi());
 
             $transaction = (new MountTransaction())->run($request, $user);
             (new CreateTransaction)->run($transaction);

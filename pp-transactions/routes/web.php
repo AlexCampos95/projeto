@@ -19,3 +19,5 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
     $router->post('transaction', 'TransactionController@execute');
 });
+
+$router->post('api/externalAuth', 'ExternalAuthController@execute');
