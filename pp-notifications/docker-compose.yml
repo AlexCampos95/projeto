@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   web-notifications:
-    container_name: php-notifications-webserver
+    container_name: pp-notifications-webserver
     depends_on:
       - php-notifications
     build: ./docker/nginx
@@ -16,7 +16,7 @@ services:
       - ./:/var/www/html
 
   php-notifications:
-    container_name: php-notifications-phpfpm
+    container_name: pp-notifications-phpfpm
     build: ./docker/php
     image: php-notifications/php
     networks:

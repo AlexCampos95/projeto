@@ -18,3 +18,4 @@ $router->get('/', function () use ($router) {
 
 
 $router->post('api/externalNotifier', 'ExternalNotifierController@execute');
+$router->post('api/notifyPayee', 'NotifyPayeeController@execute');
