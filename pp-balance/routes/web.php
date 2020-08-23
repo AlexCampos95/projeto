@@ -16,3 +16,4 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('api/transfer', 'TransferController@execute');
+$router->post('api/addFunds', 'AddFundsController@execute');
