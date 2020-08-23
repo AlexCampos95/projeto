@@ -24,5 +24,8 @@ class ShootPubSub
         $transferDoneTopic->setUrl(env('CONFIG_URL_MS_NOTIFICATIONS'));
         $transferDoneTopic->setData($data);
         $transferDoneTopic->run();
+
+        $transferDoneTopic->setUrl(env('CONFIG_URL_MS_TRANSACTIONS'));
+        $transferDoneTopic->run();
     }
 }
