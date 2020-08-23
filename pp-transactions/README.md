@@ -1,24 +1,113 @@
-# Lumen PHP Framework
+# Micro Serviço - Transactions
+Esse micro serviço é responsável por executar a transferência de valores entre os usuários. 
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+### Configurações
+| Configuração  | Descrição |
+| ------------- | ------------- |
+| Webserver     | porta:8087  |
+| Mysql         | porta:3307  |
+| /etc/hosts    | 127.0.0.1   &nbsp;&nbsp;&nbsp;   pp.transactions  |
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+&nbsp;
 
-## Official Documentation
+### Endpoints
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+| Método  | Endpoint| interação |
+| ------------- | ------------- | ------------- |
+| `POST`   | api/transaction   | chamada externa |
+| `POST`   | api/externalAuth  | processo interno|
+| `POST`   | api/updateStatus  | processo interno |
 
-## Contributing
+&nbsp;
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## POST &nbsp;&nbsp; /api/transaction
 
-## Security Vulnerabilities
+#### Headers
+`token`: token gerado pelo endpoint POST /api/login
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+#### CURL
+```
+curl --location --request POST 'pp.transactions:8087/api/transaction' \
+--header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "payee":5,
+    "value":5.3
+}'
+```
+#### Payload
+```
+{
+    "payee":5,
+    "value":5.3
+}
+```
+### Response samples
+#### 200
+`"Transaction executed"`: Transação executada, porém o que define se o dinheiro foi transferido é o status da transação.
+#### 412
+`"The User Type sended can't make transactions"`: tipo de usuário inválido para efetuar transferência de dinheiro. 
+#### 401
+`Unauthorized.`: token inválido.<br>
+`"Transaction unauthorized"`: Não autorizado pelo autorizador externo.
 
-## License
+&nbsp;
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## POST &nbsp;&nbsp; /api/externalAuth
+
+#### Headers
+não possui
+
+#### CURL
+```
+curl --location --request POST 'pp.transactions:8087/api/externalAuth' \
+--data-raw ''
+```
+#### Payload
+não possui
+
+### Response samples
+#### 200 - Mock
+```
+{
+    "message": "Autorizado"
+}
+```
+
+&nbsp;
+
+## POST &nbsp;&nbsp; /api/updateStatus
+Status disponíveis são:
+- **1:** Transação iniciada.
+- **2:** Transferencia efetuada com sucesso.
+- **3:** Transferência não efetuada.
+
+#### Headers
+não possui
+
+#### CURL
+```
+curl --location --request POST 'pp.transactions:8087/api/updateStatus' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "transaction_id":4,
+    "status":3
+}'
+```
+#### Payload
+```
+{
+    "transaction_id":4,
+    "status":3
+}
+```
+
+### Response samples
+#### 200 - Mock
+```
+{
+    "message": "Autorizado"
+}
+```
+
+&nbsp;
