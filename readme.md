@@ -22,3 +22,4 @@ Vale ressaltar que os micro serviços que interagem com o front-end (ou outro si
 &nbsp;
 
 - Micro serviço de usuários - [MS-Users](https://github.com/AlexCampos95/projeto/blob/master/pp-users/README.md "MS-Users")
+- Micro serviço de transações - [MS-Transactions](https://github.com/AlexCampos95/projeto/blob/master/pp-transactions/README.md "MS-Transactions")
