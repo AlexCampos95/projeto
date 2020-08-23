@@ -29,7 +29,7 @@ class UsersController extends Controller
             $user = (new MountUserByRequestData())->run($request);
             return response()->json(Users::create($user), 201);
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), $e->getStatusCode());
+            return response()->json($e->getMessage(), 422);
         }
     }
 
