@@ -31,6 +31,9 @@ Esse micro serviço é responsável pelo CRUD de usuários, também gera o **tok
 
 # /api/login
 ## POST &nbsp;&nbsp; /api/login
+#### Headers
+não possui
+
 #### CURL
 ```
 curl --location --request POST 'pp.users:8080/api/login' \
@@ -76,6 +79,8 @@ curl --location --request POST 'pp.users:8080/api/login' \
 
 # /api/user
 ## POST &nbsp;&nbsp; /api/user
+#### Headers
+não possui
 #### CURL
 ```
 curl --location --request POST 'pp.users:8080/api/user' \
@@ -133,6 +138,8 @@ curl --location --request GET 'pp.users:8080/api/user/6' \
 --header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ' \
 --data-raw ''
 ```
+#### Payload
+não possui
 
 ### Response samples
 #### 200
@@ -226,6 +233,9 @@ curl --location --request DELETE 'pp.users:8080/api/user/6' \
 --header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ'
 ```
 
+#### Payload
+não possui
+
 ### Response samples
 #### 204
 `<Vazio>`: Usuário removido com sucesso.
@@ -253,6 +263,10 @@ curl --location --request GET 'pp.users:8080/api/types' \
 --header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ' \
 --data-raw ''
 ```
+
+#### Payload
+não possui
+
 ### Response samples
 #### 200
 ```
@@ -298,6 +312,9 @@ curl --location --request GET 'pp.users:8080/api/types' \
 --header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ' \
 --data-raw ''
 ```
+
+#### Payload
+não possui
 
 ### Response samples
 #### 200
