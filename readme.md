@@ -13,3 +13,8 @@ Antes de começarmos a ver códigos e analisar a documentação dos endpoints de
 Setup do projeto
 =======
 Utilize o `docker-compose.yml` da raiz (projeto) para subir todos os micro serviços, cada micro serviço também conta com seu próprio `docker-compose.yml` para facilitar o desenvolvimento e manutenção. 
+
+
+Documentação dos Micro Serviços
+====
+- Micro serviço de usuários - [MS-Users](https://github.com/AlexCampos95/projeto/blob/master/pp-users/README.md "MS-Users")
