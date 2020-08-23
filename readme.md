@@ -17,4 +17,8 @@ Utilize o `docker-compose.yml` da raiz (projeto) para subir todos os micro servi
 
 Documentação dos Micro Serviços
 ====
+Vale ressaltar que os micro serviços que interagem com o front-end (ou outro sistema), são o **Users** e **Transactions**, os demais comunicam-se entre si, para atendender a transação. Entretanto também foi criado um ponto de interação no micro serviço **Balance**, para poder adicionar fundos a carteira do usuário. 
+
+&nbsp;
+
 - Micro serviço de usuários - [MS-Users](https://github.com/AlexCampos95/projeto/blob/master/pp-users/README.md "MS-Users")
