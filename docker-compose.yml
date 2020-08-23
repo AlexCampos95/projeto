@@ -1,0 +1,179 @@
+version: '3.0'
+services:
+  web-users:
+    container_name: pp-users-webserver
+    depends_on:
+      - php-users
+    build: ./pp-users/docker/nginx
+    image: pp-users/webserver
+    networks:
+      - backend
+    ports:
+      - 8080:80
+    volumes:
+      - ./pp-users/docker/nginx/certs:/etc/nginx/certs
+      - ./pp-users/docker/nginx/conf:/etc/nginx/sites-available
+      - ./pp-users:/var/www/html
+
+  php-users:
+    container_name: pp-users-phpfpm
+    build: ./pp-users/docker/php
+    image: pp-users/php
+    networks:
+      - backend
+    volumes:
+      - ./pp-users:/var/www/html
+
+  redis-users:
+    container_name: pp-users-redis
+    build: ./pp-users/docker/redis
+    image: pp-users/redis
+    networks:
+      - backend
+
+  mysql-users:
+    container_name: pp-users-mysql
+    command: --init-file /data/application/init.sql
+    env_file:
+      - ./pp-users/docker/mysql/mysql.env
+    build: ./pp-users/docker/mysql
+    image: pp-users/mysql
+    networks:
+      - backend
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/pp-users/mysql/init.sql:/data/application/init.sql
+      - mysql-users-data:/var/lib/mysql
+      - mysql-users-log:/var/log/mysql
+
+#   ========== Transactions ==========  #
+  web-transactions:
+    container_name: pp-transactions-webserver
+    depends_on:
+      - php-transactions
+    build: ./pp-transactions/docker/nginx
+    image: pp-transactions/webserver
+    networks:
+      - backend
+    ports:
+      - 8087:80
+    volumes:
+      - ./pp-transactions/docker/nginx/certs:/etc/nginx/certs
+      - ./pp-transactions/docker/nginx/conf:/etc/nginx/sites-available
+      - ./pp-transactions:/var/www/html
+
+  php-transactions:
+    container_name: pp-transactions-phpfpm
+    build: ./pp-transactions/docker/php
+    image: pp-transactions/php
+    networks:
+      - backend
+    volumes:
+      - ./pp-transactions:/var/www/html
+
+  redis-transactions:
+    container_name: pp-transactions-redis
+    build: ./pp-transactions/docker/redis
+    image: pp-transactions/redis
+    networks:
+      - backend
+
+  mysql-transactions:
+    container_name: pp-transactions-mysql
+    command: --init-file /data/application/init.sql
+    env_file:
+      - ./pp-transactions/docker/mysql/mysql.env
+    build: ./pp-transactions/docker/mysql
+    image: pp-transactions/mysql
+    networks:
+      - backend
+    ports:
+      - 3307:3306
+    volumes:
+      - ./pp-transactions/docker/mysql/init.sql:/data/application/init.sql
+      - mysql-transactions-data:/var/lib/mysql
+      - mysql-transactions-log:/var/log/mysql
+
+#   ========== Balance ==========  #
+  web-balance:
+    container_name: pp-balance-webserver
+    depends_on:
+      - php-balance
+    build: ./pp-balance/docker/nginx
+    image: pp-balance/webserver
+    networks:
+      - backend
+    ports:
+      - 8088:80
+    volumes:
+      - ./pp-balance/docker/nginx/certs:/etc/nginx/certs
+      - ./pp-balance/docker/nginx/conf:/etc/nginx/sites-available
+      - ./pp-balance:/var/www/html
+
+  php-balance:
+    container_name: pp-balance-phpfpm
+    build: ./pp-balance/docker/php
+    image: pp-balance/php
+    networks:
+      - backend
+    volumes:
+      - ./pp-balance:/var/www/html
+
+  redis-balance:
+    container_name: pp-balance-redis
+    build: ./pp-balance/docker/redis
+    image: pp-balance/redis
+    networks:
+      - backend
+
+  mysql-balance:
+    container_name: pp-balance-mysql
+    command: --init-file /data/application/init.sql
+    env_file:
+      - ./pp-balance/docker/mysql/mysql.env
+    build: ./pp-balance/docker/mysql
+    image: pp-balance/mysql
+    networks:
+      - backend
+    ports:
+      - 3308:3306
+    volumes:
+      - ./pp-balance/docker/mysql/init.sql:/data/application/init.sql
+      - mysql-balance-data:/var/lib/mysql
+      - mysql-balance-log:/var/log/mysql
+
+#   ========== Notifications ==========  #
+  web-notifications:
+    container_name: pp-notifications-webserver
+    depends_on:
+      - php-notifications
+    build: ./pp-notifications/docker/nginx
+    image: php-notifications/webserver
+    networks:
+      - backend
+    ports:
+      - 8089:80
+    volumes:
+      - ./pp-notifications/docker/nginx/certs:/etc/nginx/certs
+      - ./pp-notifications/docker/nginx/conf:/etc/nginx/sites-available
+      - ./pp-notifications:/var/www/html
+
+  php-notifications:
+    container_name: pp-notifications-phpfpm
+    build: ./pp-notifications/docker/php
+    image: php-notifications/php
+    networks:
+      - backend
+    volumes:
+      - ./pp-notifications:/var/www/html
+networks:
+  backend:
+
+volumes:
+  mysql-users-data:
+  mysql-users-log:
+  mysql-transactions-data:
+  mysql-transactions-log:
+  mysql-balance-data:
+  mysql-balance-log:
