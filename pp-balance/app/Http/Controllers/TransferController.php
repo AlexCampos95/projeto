@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Common\Enum\TransactionStatus;
-use App\Common\PubSubAbstraction;
+use App\Common\PubSub\Shooter\ShootPubSub;
 use App\Domain\Transfer\GetUserWallet;
 use App\Domain\Transfer\UserWalletBalance\AddPayeeMoney;
 use App\Domain\Transfer\UserWalletBalance\ChangeUserWalletBalance;
@@ -44,6 +44,7 @@ class TransferController extends Controller
             DB::rollBack();
         }
 
-        (new PubSubAbstraction())->run($status, $request->transaction_id, $request->payee);
+        (new ShootPubSub())->transferDoneRun($status, $request->transaction_id, $request->payee);
     }
+
 }
