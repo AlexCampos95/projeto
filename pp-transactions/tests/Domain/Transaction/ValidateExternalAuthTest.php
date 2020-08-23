@@ -42,7 +42,7 @@ class ValidateExternalAuthTest extends TestCase
         $externalAuth->method('run')->willReturn(["message" => Api::AUTHORIZED]);
 
         return [
-            'Cenario com erro de autorização' => [$externalAuth]
+            'Cenario sem erro de autorização' => [$externalAuth]
         ];
     }
 
