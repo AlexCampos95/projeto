@@ -1,0 +1,32 @@
+version: '3.0'
+services:
+  web-notifications:
+    container_name: php-notifications-webserver
+    depends_on:
+      - php-notifications
+    build: ./docker/nginx
+    image: php-notifications/webserver
+    networks:
+      - backend
+    ports:
+      - 8089:80
+    volumes:
+      - ./docker/nginx/certs:/etc/nginx/certs
+      - ./docker/nginx/conf:/etc/nginx/sites-available
+      - ./:/var/www/html
+
+  php-notifications:
+    container_name: php-notifications-phpfpm
+    build: ./docker/php
+    image: php-notifications/php
+    networks:
+      - backend
+    volumes:
+      - ./:/var/www/html
+
+networks:
+  backend:
+
+volumes:
+  mysql-data:
+  mysql-log:
