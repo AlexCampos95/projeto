@@ -32,20 +32,20 @@ services:
       - backend
 
   mysql-users:
-    container_name: pp-users-mysql
-    command: --init-file /data/application/init.sql
-    env_file:
-      - ./pp-users/docker/mysql/mysql.env
-    build: ./pp-users/docker/mysql
-    image: pp-users/mysql
-    networks:
-      - backend
-    ports:
-      - 3306:3306
-    volumes:
-      - ./pp-users/docker/mysql/init.sql:/data/application/init.sql
-      - mysql-users-data:/var/lib/mysql
-      - mysql-users-log:/var/log/mysql
+      container_name: pp-users-mysql
+      command: --init-file /data/application/init.sql
+      env_file:
+        - ./pp-users/docker/mysql/mysql.env
+      build: ./pp-users/docker/mysql
+      image: pp-users/mysql
+      networks:
+        - backend
+      ports:
+        - 3306:3306
+      volumes:
+        - ./pp-users/docker/mysql/init.sql:/data/application/init.sql
+        - mysql-user-data:/var/lib/mysql
+        - mysql-user-log:/var/log/mysql
 
 #   ========== Transactions ==========  #
   web-transactions:
@@ -171,8 +171,8 @@ networks:
   backend:
 
 volumes:
-  mysql-users-data:
-  mysql-users-log:
+  mysql-user-data:
+  mysql-user-log:
   mysql-transactions-data:
   mysql-transactions-log:
   mysql-balance-data:
