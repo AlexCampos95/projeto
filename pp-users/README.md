@@ -47,7 +47,7 @@ curl --location --request POST 'pp.users:8080/api/login' \
     "password":"123"
 }
 ```
-## Response samples
+### Response samples
 #### 200
 ```
 {
@@ -98,7 +98,7 @@ curl --location --request POST 'pp.users:8080/api/user' \
     "user_types_id":1
 }
 ```
-## Response samples
+### Response samples
 #### 201
 ```
 {
@@ -117,11 +117,9 @@ curl --location --request POST 'pp.users:8080/api/user' \
 }
 ```
 #### 422
-`"User type ID entered does not exist"`: Tipo de usuário inexistente, consulte o endpoint **GET /api/types** para saber os tipos válidos.
-
-`"E-mail already exists"`: Email já cadastrado, informe outro email.
-
-`"CPF or CNPJ already exists"`: CPF ou CNPJ já cadastrado, informe outro documento.
+`"User type ID entered does not exist"`: Tipo de usuário inexistente, consulte o endpoint **GET /api/types** para saber os tipos válidos.<br>
+`"E-mail already exists"`: Email já cadastrado, informe outro email.<br>
+`"CPF or CNPJ already exists"`: CPF ou CNPJ já cadastrado, informe outro documento.<br>
 
 &nbsp;
 
@@ -136,7 +134,7 @@ curl --location --request GET 'pp.users:8080/api/user/6' \
 --data-raw ''
 ```
 
-## Response samples
+### Response samples
 #### 200
 ```
 {
@@ -189,7 +187,7 @@ curl --location --request PUT 'pp.users:8080/api/user/54' \
 ```
 
 
-## Response samples
+### Response samples
 #### 200
 ```
 {
@@ -228,7 +226,7 @@ curl --location --request DELETE 'pp.users:8080/api/user/6' \
 --header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ'
 ```
 
-## Response samples
+### Response samples
 #### 204
 `<Vazio>`: Usuário removido com sucesso.
 
@@ -255,7 +253,7 @@ curl --location --request GET 'pp.users:8080/api/types' \
 --header 'token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ' \
 --data-raw ''
 ```
-## Response samples
+### Response samples
 #### 200
 ```
 {
@@ -301,7 +299,7 @@ curl --location --request GET 'pp.users:8080/api/types' \
 --data-raw ''
 ```
 
-## Response samples
+### Response samples
 #### 200
 ```
 {
