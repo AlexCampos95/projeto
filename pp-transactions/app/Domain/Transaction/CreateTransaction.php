@@ -21,9 +21,10 @@ class CreateTransaction
                 abort(500, "Transaction creation failed");
             }
 
-            (new PubSubAbstraction())->run($transactionCreated->getAttributes());
-
             DB::commit();
+
+            //Disparo deve ser depois do commit, devido ao processo não ser assíncrono
+            (new PubSubAbstraction())->run($transactionCreated->getAttributes());
         } catch (Exception $e) {
             DB::rollBack();
             abort(500, "Transaction creation failed");
