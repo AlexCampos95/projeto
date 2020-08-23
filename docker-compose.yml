@@ -43,7 +43,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./docker/pp-users/mysql/init.sql:/data/application/init.sql
+      - ./pp-users/docker/pp-users/mysql/init.sql:/data/application/init.sql
       - mysql-users-data:/var/lib/mysql
       - mysql-users-log:/var/log/mysql
 
