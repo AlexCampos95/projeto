@@ -15,6 +15,7 @@ Esse micro serviço é responsável por executar a transferência de valores ent
 | Método  | Endpoint| interação |
 | ------------- | ------------- | ------------- |
 | `POST`   | api/transaction   | chamada externa |
+| `POST`   | api/check         | chamada externa |
 | `POST`   | api/externalAuth  | processo interno|
 | `POST`   | api/updateStatus  | processo interno |
 
