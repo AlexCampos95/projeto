@@ -12,7 +12,22 @@ Antes de começarmos a ver códigos e analisar a documentação dos endpoints de
 
 Setup do projeto
 =======
-Utilize o `docker-compose.yml` da raiz (projeto) para subir todos os micro serviços, cada micro serviço também conta com seu próprio `docker-compose.yml` para facilitar o desenvolvimento e manutenção. 
+Rode o arquivo `run.sh` para subir todo o projeto com a instalação das dependências, migrations, seeds, etc.
+```
+~$ sh run.sh
+```
+Se for fazer o processo manualmente utilize o `docker-compose.yml` da raiz (projeto) para subir todos os micro serviços, cada micro serviço também conta com seu próprio `docker-compose.yml` para facilitar o desenvolvimento e manutenção. 
+Abaixo seguem as configurações externas para rodar o projeto, lembrando que as configurações() de cada micro serviço são copiadas através do `run.sh`
+
+### Configurações
+| Configuração  | Descrição |
+| ------------- | ------------- |
+| /etc/hosts    | 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.users <br/> 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.transactions  <br/> 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.balance  <br/> 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.notifications  |
+| Postman Collection | [projeto-collection](https://github.com/AlexCampos95/projeto/blob/docs/docs/projeto.postman_collection.json "projeto-collection") |
+| Users Mysql-Server  | `porta:3306` `root:sqladmin`  |
+| Transactions Mysql-Server  | `porta:3307` `root:sqladmin`  |
+| Balance Mysql-Server  | `porta:3308` `root:sqladmin`  |
+
 
 
 Documentação dos Micro Serviços
