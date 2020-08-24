@@ -53,6 +53,54 @@ curl --location --request POST 'pp.transactions:8087/api/transaction' \
 
 &nbsp;
 
+## POST &nbsp;&nbsp; /api/check
+
+#### Headers
+não possui
+
+#### CURL
+```
+curl --location --request POST 'pp.transactions:8087/api/check' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "transaction_id":1
+}'
+```
+#### Payload
+```
+{
+    "transaction_id":1
+}
+```
+
+### Response samples
+#### 200 
+```
+{
+    "transaction_id": 1,
+    "status": {
+        "number": 2,
+        "description": "Done"
+    }
+}
+```
+
+#### 404
+```
+{
+    "Error": "Transaction not found"
+}
+```
+
+#### 422
+```
+{
+    "Error": exception->message
+}
+```
+
+&nbsp;
+
 ## POST &nbsp;&nbsp; /api/externalAuth
 
 #### Headers
