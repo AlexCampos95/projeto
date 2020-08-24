@@ -15,8 +15,8 @@ class ChangeUserWalletBalance
 
     public function run(int $user_id, float $value)
     {
-        $userWallet = Wallet::where('id', $user_id)->first();
-        $userWallet->balance = $this->strategy->run($userWallet->balance, $value);
+        $userWallet = Wallet::firstOrNew(['user_id' => $user_id]);
+        $userWallet->balance = $this->strategy->run((float)$userWallet->balance, $value);
         $userWallet->save();
     }
 }
