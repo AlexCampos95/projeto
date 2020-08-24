@@ -1,24 +1,81 @@
-# Lumen PHP Framework
+# Micro Serviço - Notifications
+Esse micro serviço é responsável por executar envio de notificações. 
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+### Configurações
+| Configuração  | Descrição |
+| ------------- | ------------- |
+| Webserver     | porta:8089  |
+| /etc/hosts    | 127.0.0.1   &nbsp;&nbsp;&nbsp;   pp.notifications  |
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+&nbsp;
 
-## Official Documentation
+### Endpoints
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+| Método  | Endpoint| interação |
+| ------------- | ------------- | ------------- |
+| `POST`   | api/notifyPayee  | processo interno|
+| `POST`   | api/externalNotifier  | processo interno |
 
-## Contributing
+&nbsp;
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## POST &nbsp;&nbsp; /api/notifyPayee
 
-## Security Vulnerabilities
+#### Headers
+não possui
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+#### CURL
+```
+curl --location --request POST 'pp.notifications:8089/api/notifyPayee' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "transaction_id":1,
+    "payer": 4,
+    "payee": 3,
+    "value": 5
+}'
+```
+#### Payload
+```
+{
+    "transaction_id":1,
+    "payer": 1,
+    "payee": 4,
+    "value": 400000
+}
+```
+### Response samples
+Não existe uma tratativa específica, pois esse processo é executado internamente, e idealizado de forma assíncrona, onde não é possivel analisar a resposta.
+**Para efeito de teste foram adicionados os status a seguir:**
+#### 200
+`sended`: notificação enviada
 
-## License
+#### 401
+houve problema no envio da notificação e ela deve retornar para a fila.
+```
+{
+    "error": e->message
+}
+```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+&nbsp;
+
+## POST &nbsp;&nbsp; /api/externalNotifier
+
+#### Headers
+não possui
+
+#### CURL
+```
+curl --location --request POST 'pp.notifications:8089/api/externalNotifier' \
+--data-raw ''
+```
+#### Payload
+não possui
+
+### Response samples
+#### 200 - Mock
+```
+{
+    "message": "Enviado"
+}
+```
