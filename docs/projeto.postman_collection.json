@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "c36874eb-9b0b-4b96-83a3-23309ff00321",
+		"name": "ppSimplificado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pp.users",
+			"item": [
+				{
+					"name": "pp.users:8080/api/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"jose.email@email\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.users:8080/api/login",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.users:8080/api/user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Alex\",\n    \"cpf_cnpj\":\"000.000.000-00\",\n    \"email\":\"tester.email@emai1l\",\n    \"password\":\"123\",\n    \"user_types_id\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.users:8080/api/user",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.users:8080/api/user/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.users:8080/api/user/5",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.users:8080/api/user/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Alex xxxxx\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.users:8080/api/user/6",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.users:8080/api/user/3",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "pp.users:8080/api/user/6",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.users:8080/api/types",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.users:8080/api/types",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.users:8080/api/types/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.users:8080/api/types/1",
+							"host": [
+								"pp",
+								"users"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"types",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "pp.transactions",
+			"item": [
+				{
+					"name": "pp.transactions:8087/api/transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payee\":4,\n    \"value\":5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.transactions:8087/api/transaction",
+							"host": [
+								"pp",
+								"transactions"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.transactions:8087/api/externalAuth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.transactions:8087/api/externalAuth",
+							"host": [
+								"pp",
+								"transactions"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"externalAuth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.transactions:8087/api/updateStatus",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJUeXBlc0lkIjoxfQ.iFEtAYZryEdU-IOTzf2kyNrcDe6BWM03VSN--msRdSQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction_id\":4,\n    \"status\":3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.transactions:8087/api/updateStatus",
+							"host": [
+								"pp",
+								"transactions"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"updateStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.transactions:8087/api/check",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction_id\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.transactions:8087/api/check",
+							"host": [
+								"pp",
+								"transactions"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"check"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "pp.balance",
+			"item": [
+				{
+					"name": "pp.balance:8088/api/transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction_id\":1,\n    \"payer\": 4,\n    \"payee\": 3,\n    \"value\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.balance:8088/api/transfer",
+							"host": [
+								"pp",
+								"balance"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.balance:8088/api/addFunds",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\":50,\n    \"amount\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.balance:8088/api/addFunds",
+							"host": [
+								"pp",
+								"balance"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"addFunds"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "pp.notifications",
+			"item": [
+				{
+					"name": "pp.notifications:8089/api/notifyPayee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction_id\":1,\n    \"payer\": 4,\n    \"payee\": 3,\n    \"value\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.notifications:8089/api/notifyPayee",
+							"host": [
+								"pp",
+								"notifications"
+							],
+							"port": "8089",
+							"path": [
+								"api",
+								"notifyPayee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pp.notifications:8089/api/externalNotifier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "pp.notifications:8089/api/externalNotifier",
+							"host": [
+								"pp",
+								"notifications"
+							],
+							"port": "8089",
+							"path": [
+								"api",
+								"externalNotifier"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
