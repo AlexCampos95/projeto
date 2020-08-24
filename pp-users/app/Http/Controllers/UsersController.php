@@ -8,6 +8,7 @@ use App\Domain\Users\ValidateUserUniqueFields;
 use App\Models\Users;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Lumen\Routing\Controller;
 
 class UsersController extends Controller
@@ -35,15 +36,25 @@ class UsersController extends Controller
 
     public function get($id)
     {
-        $recurso = Users::find($id);
-        return response()->json(
-            $recurso,
-            !empty($recurso) ? 200 : 204
-        );
+        $cacheKey = "users_" . $id;
+        $recurso = Cache::get($cacheKey);
+        if (empty($recurso)) {
+            $recurso = Users::find($id);
+            Cache::add($cacheKey, $recurso);
+        }
+
+        if (empty($recurso)) {
+            return response()->json(['Error' => 'User not found'], 404);
+        }
+
+        return response()->json($recurso, 200);
     }
 
     public function update(int $id, Request $request)
     {
+        $cacheKey = "users_" . $id;
+        Cache::forget($cacheKey);
+
         $users = Users::find($id);
 
         if (empty($users)) {
@@ -54,17 +65,21 @@ class UsersController extends Controller
         $users->fill($userData);
         $users->save();
 
+        Cache::add($cacheKey, $users);
         return response()->json($users);
     }
 
     public function destroy($id)
     {
+        $cacheKey = "users_" . $id;
+        Cache::forget($cacheKey);
+
         $qtdeSeriesRemovidas = Users::destroy($id);
 
         if ($qtdeSeriesRemovidas === 0) {
             return response()->json(['Error' => 'User not found'], 404);
         }
 
-        return response()->json('', 204);
+        return response()->json(['message' => "User removed"], 200);
     }
 }
