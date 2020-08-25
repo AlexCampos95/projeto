@@ -45,12 +45,32 @@ curl --location --request POST 'pp.transactions:8087/api/transaction' \
 ```
 ### Response samples
 #### 200
-`"Transaction executed"`: Transação executada, porém o que define se o dinheiro foi transferido é o status da transação.
+Transação executada, porém o que define se o dinheiro foi transferido é o status da transação.
+```
+{
+    "message":"Transaction executed"
+}
+```
 #### 412
-`"The User Type sended can't make transactions"`: tipo de usuário inválido para efetuar transferência de dinheiro. 
+tipo de usuário inválido para efetuar transferência de dinheiro. 
+```
+{
+    "Error":"The User Type sended can't make transactions"
+}
+``` 
+
 #### 401
-`Unauthorized.`: token inválido.<br>
-`"Transaction unauthorized"`: Não autorizado pelo autorizador externo.
+token inválido.<br>
+```
+{
+    "Error":Unauthorized.
+``` 
+Não autorizado pelo autorizador externo:
+```
+{
+    "Error":"Transaction unauthorized"
+}
+```
 
 &nbsp;
 
