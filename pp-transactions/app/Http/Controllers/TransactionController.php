@@ -33,7 +33,7 @@ class TransactionController extends Controller
             $transaction = (new MountTransaction())->run($request, $user);
             (new CreateTransaction)->run($transaction);
 
-            return response()->json(["message"=>"Transaction executed"], 200);
+            return response()->json(["message"=>"Transaction started"], 200);
         } catch (HttpException $e) {
             return response()->json(['Error' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
