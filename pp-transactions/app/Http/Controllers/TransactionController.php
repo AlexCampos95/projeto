@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Routing\Controller;
 use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TransactionController extends Controller
 {
@@ -32,9 +33,11 @@ class TransactionController extends Controller
             $transaction = (new MountTransaction())->run($request, $user);
             (new CreateTransaction)->run($transaction);
 
-            return response()->json("Transaction executed", 200);
+            return response()->json(["message"=>"Transaction executed"], 200);
+        } catch (HttpException $e) {
+            return response()->json(['Error' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), $e->getStatusCode());
+            return response()->json(['Error' => $e->getMessage()], 422);
         }
     }
 }
