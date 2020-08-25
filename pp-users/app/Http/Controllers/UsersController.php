@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\Cache\Configs;
 use App\Domain\Users\MountUserByRequestData;
 use App\Domain\Users\ValidateUserTypesIdExists;
 use App\Domain\Users\ValidateUserUniqueFields;
@@ -36,11 +37,11 @@ class UsersController extends Controller
 
     public function get($id)
     {
-        $cacheKey = "users_" . $id;
+        $cacheKey = Configs::USERS_PREFIX . $id;
         $recurso = Cache::get($cacheKey);
         if (empty($recurso)) {
             $recurso = Users::find($id);
-            Cache::add($cacheKey, $recurso);
+            Cache::add($cacheKey, $recurso, Configs::DAY);
         }
 
         if (empty($recurso)) {
@@ -52,7 +53,7 @@ class UsersController extends Controller
 
     public function update(int $id, Request $request)
     {
-        $cacheKey = "users_" . $id;
+        $cacheKey = Configs::USERS_PREFIX . $id;
         Cache::forget($cacheKey);
 
         $users = Users::find($id);
@@ -71,7 +72,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $cacheKey = "users_" . $id;
+        $cacheKey = Configs::USERS_PREFIX . $id;
         Cache::forget($cacheKey);
 
         $qtdeSeriesRemovidas = Users::destroy($id);
