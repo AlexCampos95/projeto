@@ -3,11 +3,11 @@ Introdução
 Antes de começarmos a ver códigos e analisar a documentação dos endpoints de cada micro serviço, vale ressaltar que o projeto foi idealizado de uma forma, porém executado de outra. A idealização desse projeto é de uma estrutura assíncrona, utilizando um serviço de mensageria para efetuar a comunicação entre os micro serviços, tornando-os independentes. A execução da proposta utilizou de uma abstração do serviço de mensageria, deixando o fluxo linear. 
 
 ### Proposta Idealizada
-![Proposta Idealizada](https://github.com/AlexCampos95/projeto/blob/docs/docs/proposta-ideal.jpeg?raw=true)
+![Proposta Idealizada](https://github.com/AlexCampos95/projeto/blob/master/docs/proposta-ideal.jpeg?raw=true)
 
 
 ### Proposta Executada
-![Proposta Executada](https://github.com/AlexCampos95/projeto/blob/docs/docs/proposta-executada.jpeg?raw=true)
+![Proposta Executada](https://github.com/AlexCampos95/projeto/blob/master/docs/proposta-executada.jpeg?raw=true)
 
 
 Setup do projeto
@@ -23,7 +23,7 @@ Abaixo seguem as configurações externas para rodar o projeto, lembrando que as
 | Configuração  | Descrição |
 | ------------- | ------------- |
 | /etc/hosts    | 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.users <br/> 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.transactions  <br/> 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.balance  <br/> 127.0.0.1   &nbsp;&nbsp;&nbsp;&nbsp;   pp.notifications  |
-| Postman Collection | [projeto-collection](https://github.com/AlexCampos95/projeto/blob/docs/docs/projeto.postman_collection.json "projeto-collection") |
+| Postman Collection | [projeto-collection](https://github.com/AlexCampos95/projeto/blob/master/docs/projeto.postman_collection.json "projeto-collection") |
 | Users Mysql-Server  | `porta:3306` `root:sqladmin`  |
 | Transactions Mysql-Server  | `porta:3307` `root:sqladmin`  |
 | Balance Mysql-Server  | `porta:3308` `root:sqladmin`  |
