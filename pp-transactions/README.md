@@ -48,7 +48,7 @@ curl --location --request POST 'pp.transactions:8087/api/transaction' \
 Transação executada, porém o que define se o dinheiro foi transferido é o status da transação.
 ```
 {
-    "message":"Transaction executed"
+    "message":"Transaction started"
 }
 ```
 #### 412
