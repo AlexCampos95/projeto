@@ -242,7 +242,11 @@ não possui
 
 ### Response samples
 #### 204
-`<Vazio>`: Usuário removido com sucesso.
+```
+{
+    "message": "User removed"
+}
+```
 
 #### 404
 ```
