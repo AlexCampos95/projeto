@@ -159,8 +159,12 @@ não possui
     }
 }
 ```
-#### 204
-`<Vazio>`: Usuário não encontrado
+#### 404
+```
+{
+    "Error":"User not found"
+}
+```
 
 #### 401
 `Unauthorized.`: token inválido
