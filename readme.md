@@ -12,12 +12,13 @@ Antes de começarmos a ver códigos e analisar a documentação dos endpoints de
 
 Setup do projeto
 =======
-Rode o arquivo `run.sh` para subir todo o projeto com a instalação das dependências, migrations, seeds, etc.
+Rode o arquivo `run.sh` para subir todo o projeto com a instalação das dependências, migrations, seeds, etc.(recomendado na primeira execução do projeto). <br/>
+Esse processo poder demorar vários minutos, recomendo que deixe o script rodando enquanto toma um cafézinho :coffee: :smile: 
 ```
 ~$ sh run.sh
 ```
-Se for fazer o processo manualmente utilize o `docker-compose.yml` da raiz (projeto) para subir todos os micro serviços, cada micro serviço também conta com seu próprio `docker-compose.yml` para facilitar o desenvolvimento e manutenção. 
-Abaixo seguem as configurações externas para rodar o projeto, lembrando que as configurações() de cada micro serviço são copiadas através do `run.sh`
+Se for fazer o processo manualmente (ou nas demais vezes após configurado) utilize o `docker-compose.yml` da raiz (projeto) para subir todos os micro serviços fazendo intercomunicação. Cada micro serviço também conta com seu próprio `docker-compose.yml` para facilitar o desenvolvimento e manutenção. 
+Abaixo seguem as configurações externas para rodar o projeto, lembrando que as configurações(.env) de cada micro serviço são copiadas através do `run.sh`
 
 ### Configurações
 | Configuração  | Descrição |
@@ -38,5 +39,5 @@ Vale ressaltar que os micro serviços que interagem com o front-end (ou outro si
 
 - Micro serviço de usuários - [MS-Users](https://github.com/AlexCampos95/projeto/blob/master/pp-users/README.md "MS-Users")
 - Micro serviço de transações - [MS-Transactions](https://github.com/AlexCampos95/projeto/blob/master/pp-transactions/README.md "MS-Transactions")
-- Micro serviço de carteira de usuários - [Ms-Balance](https://github.com/AlexCampos95/projeto/blob/master/pp-balance/README.md "Ms-Balance")
-- Micro serviço de notificações - [Ms-Notifications](https://github.com/AlexCampos95/projeto/blob/master/pp-notifications/README.md "Ms-Notifications")
+- Micro serviço de carteira de usuários - [MS-Balance](https://github.com/AlexCampos95/projeto/blob/master/pp-balance/README.md "MS-Balance")
+- Micro serviço de notificações - [MS-Notifications](https://github.com/AlexCampos95/projeto/blob/master/pp-notifications/README.md "MS-Notifications")
